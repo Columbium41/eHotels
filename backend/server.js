@@ -1,10 +1,12 @@
 require('dotenv').config();
 
+// Start express and pg
 const express = require('express');
 const { Client } = require('pg');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// create postgres client
 const client = new Client({
     user: process.env.PG_USER || '',
     host: process.env.PG_HOST || '',
@@ -14,6 +16,7 @@ const client = new Client({
 });
 
 client.connect();
+
 
 // Start the server
 app.listen(PORT, () => {
