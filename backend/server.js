@@ -18,11 +18,24 @@ const client = new Client({
 client.connect();
 
 // Routes
-app.get('/', async (req, res) => {
+app.get('/api/hotel_chains', async (req, res) => {
     try {
         const query = 'SELECT * FROM HotelChain';
         const result = await client.query(query);
-        res.json(result.rows);
+        const hotelChains = result.rows;
+        res.json(hotelChains);
+    } catch(err) {
+        console.error('Error executing query:', err);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+app.get('/api/hotels', async (req, res) => {
+    try {
+        const query = 'SELECT * FROM Hotel';
+        const result = await client.query(query);
+        const hotels = result.rows;
+        res.json(hotels);
     } catch(err) {
         console.error('Error executing query:', err);
         res.status(500).json({ error: 'Internal server error' });
