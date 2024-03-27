@@ -8,9 +8,9 @@ import AppRoutes from './components/AppRoutes';
 
 function App() {
   return (
-    <div className="App">
+    <div className="">
       <Router basename="/">
-        <div className="app-content">
+        <div className="">
           <Navbar />
 
           <main>
