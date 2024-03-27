@@ -3,9 +3,17 @@
 -- Hotel Chains
 CREATE TABLE IF NOT EXISTS HotelChain(
     hotel_chain_name varchar(255) PRIMARY KEY,
-    address varchar(255),
-    email varchar(255),
-    phone_number varchar(20)
+    address varchar(255)
+);
+
+CREATE TABLE IF NOT EXISTS HotelChainPhoneNumber(
+    phone_number varchar(20) PRIMARY KEY,
+    hotel_chain_name varchar(255)
+);
+
+CREATE TABLE IF NOT EXISTS HotelChainEmailAddress(
+    email varchar(255) PRIMARY KEY,
+    hotel_chain_name varchar(255)
 );
 
 -- Hotels
@@ -95,6 +103,9 @@ CREATE TABLE IF NOT EXISTS BookingRenting(
 );
 
 -- Foreign Key Constraints
+ALTER TABLE HotelChainPhoneNumber ADD CONSTRAINT fk_hotel_chain_name FOREIGN KEY (hotel_chain_name) REFERENCES HotelChain(hotel_chain_name);
+ALTER TABLE HotelChainEmailAddress ADD CONSTRAINT fk_hotel_chain_name FOREIGN KEY (hotel_chain_name) REFERENCES HotelChain(hotel_chain_name);
+
 ALTER TABLE Hotel ADD CONSTRAINT fk_hotel_chain_name FOREIGN KEY (hotel_chain_name) REFERENCES HotelChain(hotel_chain_name);
 ALTER TABLE Hotel ADD CONSTRAINT fk_manager_SSN FOREIGN KEY (manager_SSN) REFERENCES Employee(employee_SSN);
 
