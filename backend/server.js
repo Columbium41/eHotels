@@ -17,6 +17,17 @@ const client = new Client({
 
 client.connect();
 
+// Routes
+app.get('/', async (req, res) => {
+    try {
+        const query = 'SELECT * FROM HotelChain';
+        const result = await client.query(query);
+        res.json(result.rows);
+    } catch(err) {
+        console.error('Error executing query:', err);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
 
 // Start the server
 app.listen(PORT, () => {
