@@ -15,6 +15,7 @@ function Navbar() {
         { name: 'Link 4', to: '/link_4', current: false },
     ]);
 
+    // useEffect to highlight current URL in navbar
     useEffect(() => {
         const updatedNavigation = navigation.map(item => ({
             name: item.name,
