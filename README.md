@@ -26,16 +26,7 @@ CREATE USER eHotelsUser WITH PASSWORD '<password (optional)>';
 CREATE DATABASE eHotels OWNER eHotelsUser;
 ```
 
-5. Populate Local Database
-```bash
-cd backend
-psql -p <your postgresql port> -U ehotelsuser -d ehotels < ./backend/scripts/drop_tables.sql # run before if database is not empty
-psql -p <your postgresql port> -U ehotelsuser -d ehotels < ./backend/scripts/create_tables.sql
-psql -p <your postgresql port> -U ehotelsuser -d ehotels < ./backend/scripts/populate_hotel_tables.sql
-node ./backend/scripts/populate_user_tables.js
-```
-
-6. Create .env file in the backend repo
+5. Create .env file in the backend repo
 ```bash
 cd backend
 touch .env
@@ -49,6 +40,15 @@ PG_PASSWORD = "<your postgresql user's password>"
 PG_DATABASE = "ehotels"
 PG_HOST = "localhost"
 PG_PORT = "<your postgresql's port (by default 5432)>"
+```
+
+6. Populate Local Database
+```bash
+cd backend
+psql -p <your postgresql port> -U ehotelsuser -d ehotels < ./backend/scripts/drop_tables.sql # run before if database is not empty
+psql -p <your postgresql port> -U ehotelsuser -d ehotels < ./backend/scripts/create_tables.sql
+psql -p <your postgresql port> -U ehotelsuser -d ehotels < ./backend/scripts/populate_hotel_tables.sql
+node ./backend/scripts/populate_user_tables.js
 ```
 
 7. Run the app
