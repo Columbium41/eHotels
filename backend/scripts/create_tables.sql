@@ -1,4 +1,4 @@
--- populate_tables.sql
+-- create_tables.sql
 
 -- Hotel Chains
 CREATE TABLE IF NOT EXISTS HotelChain(
@@ -18,10 +18,11 @@ CREATE TABLE IF NOT EXISTS HotelChainEmailAddress(
 
 -- Hotels
 CREATE TABLE IF NOT EXISTS Hotel(
-    hotel_name varchar(255) PRIMARY KEY,
+    hotel_id int PRIMARY KEY,
     hotel_chain_name varchar(255),
     manager_SSN varchar(11),
     rating int CHECK (rating >= 1 AND rating <= 5),
+    number_of_rooms int
     address varchar(255),
     email varchar(255),
     phone_number varchar(20)
@@ -30,7 +31,7 @@ CREATE TABLE IF NOT EXISTS Hotel(
 -- Rooms
 CREATE TABLE IF NOT EXISTS Room(
     room_id int PRIMARY KEY,
-    hotel_name varchar(255),
+    hotel_id int,
     price decimal(10, 2) CHECK (price >= 0),
     capacity int CHECK (capacity > 0),
     view varchar(255),
@@ -56,7 +57,7 @@ CREATE TABLE IF NOT EXISTS RoomAmenityJoin(
 -- Employees
 CREATE TABLE IF NOT EXISTS Employee(
     employee_SSN varchar(11) PRIMARY KEY,
-    hotel_name varchar(255),
+    hotel_id int,
     first_name varchar(20),
     middle_name varchar(20),
     last_name varchar(20),
@@ -109,14 +110,14 @@ ALTER TABLE HotelChainEmailAddress ADD CONSTRAINT fk_hotel_chain_name FOREIGN KE
 ALTER TABLE Hotel ADD CONSTRAINT fk_hotel_chain_name FOREIGN KEY (hotel_chain_name) REFERENCES HotelChain(hotel_chain_name);
 ALTER TABLE Hotel ADD CONSTRAINT fk_manager_SSN FOREIGN KEY (manager_SSN) REFERENCES Employee(employee_SSN);
 
-ALTER TABLE Room ADD CONSTRAINT fk_hotel_name FOREIGN KEY (hotel_name) REFERENCES Hotel(hotel_name);
+ALTER TABLE Room ADD CONSTRAINT fk_hotel_id FOREIGN KEY (hotel_id) REFERENCES Hotel(hotel_id);
 
 ALTER TABLE RoomIssue ADD CONSTRAINT fk_room_id FOREIGN KEY (room_id) REFERENCES Room(room_id);
 
 ALTER TABLE RoomAmenityJoin ADD CONSTRAINT fk_room_id FOREIGN KEY (room_id) REFERENCES Room(room_id);
 ALTER TABLE RoomAmenityJoin ADD CONSTRAINT fk_amenity FOREIGN KEY (amenity) REFERENCES Amenity(amenity);
 
-ALTER TABLE Employee ADD CONSTRAINT fk_hotel_name FOREIGN KEY (hotel_name) REFERENCES Hotel(hotel_name);
+ALTER TABLE Employee ADD CONSTRAINT fk_hotel_id FOREIGN KEY (hotel_id) REFERENCES Hotel(hotel_id);
 
 ALTER TABLE EmployeePositionJoin ADD CONSTRAINT fk_employee_SSN FOREIGN KEY (employee_SSN) REFERENCES Employee(employee_SSN);
 ALTER TABLE EmployeePositionJoin ADD CONSTRAINT fk_position FOREIGN KEY (position) REFERENCES Position(position);
