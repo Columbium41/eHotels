@@ -20,7 +20,6 @@ CREATE TABLE IF NOT EXISTS HotelChainEmailAddress(
 CREATE TABLE IF NOT EXISTS Hotel(
     hotel_id int PRIMARY KEY,
     hotel_chain_name varchar(255),
-    manager_SSN varchar(11),
     rating int CHECK (rating >= 1 AND rating <= 5),
     address varchar(255),
     email varchar(255),
@@ -107,7 +106,6 @@ ALTER TABLE HotelChainPhoneNumber ADD CONSTRAINT fk_hotel_chain_name FOREIGN KEY
 ALTER TABLE HotelChainEmailAddress ADD CONSTRAINT fk_hotel_chain_name FOREIGN KEY (hotel_chain_name) REFERENCES HotelChain(hotel_chain_name);
 
 ALTER TABLE Hotel ADD CONSTRAINT fk_hotel_chain_name FOREIGN KEY (hotel_chain_name) REFERENCES HotelChain(hotel_chain_name);
-ALTER TABLE Hotel ADD CONSTRAINT fk_manager_SSN FOREIGN KEY (manager_SSN) REFERENCES Employee(employee_SSN);
 
 ALTER TABLE Room ADD CONSTRAINT fk_hotel_id FOREIGN KEY (hotel_id) REFERENCES Hotel(hotel_id);
 

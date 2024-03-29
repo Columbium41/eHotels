@@ -28,8 +28,11 @@ CREATE DATABASE eHotels OWNER eHotelsUser;
 
 5. Populate Local Database
 ```bash
-psql -p <your postgresql port> -U ehotelsuser -d ehotels < ./backend/scripts/populate_tables.sql
-node ./backend/scripts/populate_data.js
+cd backend
+psql -p <your postgresql port> -U ehotelsuser -d ehotels < ./backend/scripts/drop_tables.sql # run before if database is not empty
+psql -p <your postgresql port> -U ehotelsuser -d ehotels < ./backend/scripts/create_tables.sql
+psql -p <your postgresql port> -U ehotelsuser -d ehotels < ./backend/scripts/populate_hotel_tables.sql
+node ./backend/scripts/populate_user_tables.js
 ```
 
 6. Create .env file in the backend repo

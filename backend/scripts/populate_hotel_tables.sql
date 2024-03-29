@@ -1,79 +1,77 @@
-INSERT INTO HotelChain (hotel_chain_name, address) VALUES (
+INSERT INTO HotelChain (hotel_chain_name, address) VALUES
     ('Hilton','4170 Vel Street, Denver, Nevada, United States'),
     ('Marriott','349 Mi. Street, Watson Lake, Yukon, Canada'),
     ('Millennium','4847 Nulla Road, Town of Yarmouth, Colorado, United States'),
     ('Travelodge','6971 Non Road, Prince Albert, Iowa, United States'),
-    ('GreenTree Inns', '541 Tortor Avenue, West Valley City, Oklahoma, United States')
-);
+    ('GreenTree Inns', '541 Tortor Avenue, West Valley City, Oklahoma, United States');
 
-INSERT INTO HotelChainPhoneNumber (phone_number, hotel_chain_name) VALUES (
+INSERT INTO HotelChainPhoneNumber (phone_number, hotel_chain_name) VALUES
     ('635-803-6315', 'Hilton'),
     ('466-808-2313', 'Marriott'),
     ('829-276-6353', 'Millennium'),
     ('622-370-7449', 'Travelodge'),
-    ('748-175-6329', 'GreenTree Inns')
-);
+    ('748-175-6329', 'GreenTree Inns');
 
-INSERT INTO HotelChainEmailAddress (email, hotel_chain_name) VALUES (
+INSERT INTO HotelChainEmailAddress (email, hotel_chain_name) VALUES
     ('sed@icloud.com', 'Hilton'),
-    ('hendrerit@google.ca', 'Mariott'),
+    ('hendrerit@google.ca', 'Marriott'),
     ('lobortis.risus@yahoo.com', 'Millennium'),
     ('nullam.velit@hotmail.com', 'Travelodge'),
-    ('tellus.lorem@outlook.net', 'GreenTree Inns')
-);
+    ('tellus.lorem@outlook.net', 'GreenTree Inns');
 
+INSERT INTO Hotel (hotel_id, hotel_chain_name, rating, address, email, phone_number) VALUES 
+    (0, 'Hilton', 3, '123 That St, RandomPlace, Canada', 'hotel0@example.com', '133-551-5989'),
+    (1, 'Hilton', 3, '123 Main St, Anytown, USA', 'hotel1@example.com', '321-098-5672'),
+    (2, 'Hilton', 3, '123 Second St, Anytown, USA', 'hotel2@example.com', '123-456-7890'),
+    (3, 'Hilton', 4, '456 Elm St, Othertown, Canada', 'hotel3@example.com', '198-765-4321'),
+    (4, 'Hilton', 2, '789 Oak St, Anycity, USA', 'hotel4@example.com', '135-792-4680'),
+    (5, 'Hilton', 5, '321 Maple St, Anystate, USA', 'hotel5@example.com', '102-938-4756'),
+    (6, 'Hilton', 3, '654 Pine St, Othercity, Canada', 'hotel6@example.com', '174-205-8963'),
+    (7, 'Hilton', 4, '987 Cedar St, Anothercity, USA', 'hotel7@example.com', '109-876-5432'),
+    (8, 'Marriott', 2, '654 Birch St, Yetanothercity, Canada', 'hotel8@example.com', '162-738-4950'),
+    (9, 'Marriott', 3, '321 Willow St, Finalcity, Canada', 'hotel9@example.com', '182-736-4950'),
+    (10, 'Marriott', 3, '456 Elm St, Othertown, USA', 'hotel10@example.com', '987-654-3210'),
+    (11, 'Marriott', 5, '789 Maple St, Anystate, USA', 'hotel11@example.com', '456-789-0123'),
+    (12, 'Marriott', 2, '321 Pine St, Othertown, USA', 'hotel12@example.com', '654-321-0987'),
+    (13, 'Marriott', 4, '987 Cedar St, Anothercity, Canada', 'hotel13@example.com', '321-098-7654'),
+    (14, 'Marriott', 3, '654 Birch St, Yetanothercity, USA', 'hotel14@example.com', '789-012-3456'),
+    (15, 'Marriott', 3, '123 Willow St, Finalcity, Canada', 'hotel15@example.com', '890-123-4567'),
+    (16, 'Millennium', 4, '456 Cedar St, Lastcity, USA', 'hotel16@example.com', '234-567-8901'),
+    (17, 'Millennium', 4, '123 Oak St, Anycity, USA', 'hotel17@example.com', '111-222-3333'),
+    (18, 'Millennium', 3, '456 Elm St, Othertown, Canada', 'hotel18@example.com', '444-555-6666'),
+    (19, 'Millennium', 5, '789 Maple St, Anystate, Canada', 'hotel19@example.com', '777-888-9999'),
+    (20, 'Millennium', 2, '321 Pine St, Othercity, Canada', 'hotel20@example.com', '123-656-7890'),
+    (21, 'Millennium', 4, '987 Cedar St, Lastcity, USA', 'hotel21@example.com', '334-567-8901'),
+    (22, 'Millennium', 3, '654 Birch St, Yetanothercity, USA', 'hotel22@example.com', '345-678-9012'),
+    (23, 'Millennium', 4, '123 Willow St, Finalcity, USA', 'hotel23@example.com', '596-789-0123'),
+    (24, 'Travelodge', 3, '456 Cedar St, Lastcity, Canada', 'hotel24@example.com', '567-890-1234'),
+    (25, 'Travelodge', 4, '123 Oak St, Anycity, Canada', 'hotel25@example.com', '813-222-3333'),
+    (26, 'Travelodge', 3, '456 Elm St, Othertown, USA', 'hotel26@example.com', '928-555-6666'),
+    (27, 'Travelodge', 5, '789 Maple St, Yetanothercity, USA', 'hotel27@example.com', '727-888-9999'),
+    (28, 'Travelodge', 2, '321 Pine St, Othercity, USA', 'hotel28@example.com', '115-456-7890'),
+    (29, 'Travelodge', 4, '987 Cedar St, Anothercity, USA', 'hotel29@example.com', '201-567-8901'),
+    (30, 'Travelodge', 3, '654 Birch St, Yetanothercity, USA', 'hotel30@example.com', '345-678-9012'),
+    (31, 'Travelodge', 4, '123 Willow St, Finalcity, USA', 'hotel31@example.com', '456-789-0123'),
+    (32, 'GreenTree Inns', 4, '123 Oak St, Anycity, Canada', 'hotel32@example.com', '129-222-3333'),
+    (33, 'GreenTree Inns', 3, '456 Elm St, Anycity, Canada', 'hotel33@example.com', '768-555-6666'),
+    (34, 'GreenTree Inns', 5, '789 Maple St, Anystate, Canada', 'hotel34@example.com', '682-209-9999'),
+    (35, 'GreenTree Inns', 2, '321 Pine St, Othercity, USA', 'hotel35@example.com', '178-456-7890'),
+    (36, 'GreenTree Inns', 4, '987 Cedar St, Anothercity, USA', 'hotel36@example.com', '573-567-8901'),
+    (37, 'GreenTree Inns', 3, '654 Birch St, Yetanothercity, Canada', 'hotel37@example.com', '987-678-9012'),
+    (38, 'GreenTree Inns', 4, '123 Willow St, Finalcity, USA', 'hotel38@example.com', '788-789-0123'),
+    (39, 'GreenTree Inns', 3, '456 Cedar St, Lastcity, USA', 'hotel39@example.com', '333-890-1234');
 
-INSERT INTO Hotel (hotel_id, hotel_chain_name, manager_SSN, rating, address, email, phone_number) VALUES (
-    (0, 'Hilton', 10000000000, 3, '123 That St, RandomPlace, Canada', 'hotel0@example.com', '133-551-5989'),
-    (1, 'Hilton', 11000000000, 3, '123 Main St, Anytown, USA', 'hotel1@example.com', '321-098-5672'),
-    (2, 'Hilton', 12000000000, 3, '123 Second St, Anytown, USA', 'hotel2@example.com', '123-456-7890'),
-    (3, 'Hilton', 13000000000, 4, '456 Elm St, Othertown, Canada', 'hotel3@example.com', '198-765-4321'),
-    (4, 'Hilton', 14000000000, 2, '789 Oak St, Anycity, USA', 'hotel4@example.com', '135-792-4680'),
-    (5, 'Hilton', 15000000000, 5, '321 Maple St, Anystate, USA', 'hotel5@example.com', '102-938-4756'),
-    (6, 'Hilton', 16000000000, 3, '654 Pine St, Othercity, Canada', 'hotel6@example.com', '174-205-8963'),
-    (7, 'Hilton', 17000000000, 4, '987 Cedar St, Anothercity, USA', 'hotel7@example.com', '109-876-5432'),
-    (8, 'Marriott', 20000000000, 2, '654 Birch St, Yetanothercity, Canada', 'hotel8@example.com', '162-738-4950'),
-    (9, 'Marriott', 21000000000, 3, '321 Willow St, Finalcity, Canada', 'hotel9@example.com', '182-736-4950'),
-    (10, 'Marriott', 22000000000, 3, '456 Elm St, Othertown, USA', 'hotel10@example.com', '987-654-3210'),
-    (11, 'Marriott', 23000000000, 5, '789 Maple St, Anystate, USA', 'hotel11@example.com', '456-789-0123'),
-    (12, 'Marriott', 24000000000, 2, '321 Pine St, Othertown, USA', 'hotel12@example.com', '654-321-0987'),
-    (13, 'Marriott', 25000000000, 4, '987 Cedar St, Anothercity, Canada', 'hotel13@example.com', '321-098-7654'),
-    (14, 'Marriott', 26000000000, 3, '654 Birch St, Yetanothercity, USA', 'hotel14@example.com', '789-012-3456'),
-    (15, 'Marriott', 27000000000, 3, '123 Willow St, Finalcity, Canada', 'hotel15@example.com', '890-123-4567'),
-    (16, 'Millenium', 30000000000, 4, '456 Cedar St, Lastcity, USA', 'hotel16@example.com', '234-567-8901'),
-    (17, 'Millennium', 31000000000, 4, '123 Oak St, Anycity, USA', 'hotel17@example.com', '111-222-3333'),
-    (18, 'Millennium', 32000000000, 3, '456 Elm St, Othertown, Canada', 'hotel18@example.com', '444-555-6666'),
-    (19, 'Millennium', 33000000000, 5, '789 Maple St, Anystate, Canada', 'hotel19@example.com', '777-888-9999'),
-    (20, 'Millennium', 34000000000, 2, '321 Pine St, Othercity, Canada', 'hotel20@example.com', '123-656-7890'),
-    (21, 'Millennium', 35000000000, 4, '987 Cedar St, Lastcity, USA', 'hotel21@example.com', '334-567-8901'),
-    (22, 'Millennium', 36000000000, 3, '654 Birch St, Yetanothercity, USA', 'hotel22@example.com', '345-678-9012'),
-    (23, 'Millennium', 37000000000, 4, '123 Willow St, Finalcity, USA', 'hotel23@example.com', '596-789-0123'),
-    (24, 'Travelodge', 40000000000, 3, '456 Cedar St, Lastcity, Canada', 'hotel24@example.com', '567-890-1234'),
-    (25, 'Travelodge', 41000000000, 4, '123 Oak St, Anycity, Canada', 'hotel25@example.com', '813-222-3333'),
-    (26, 'Travelodge', 42000000000, 3, '456 Elm St, Othertown, USA', 'hotel26@example.com', '928-555-6666'),
-    (27, 'Travelodge', 43000000000, 5, '789 Maple St, Yetanothercity, USA', 'hotel27@example.com', '727-888-9999'),
-    (28, 'Travelodge', 44000000000, 2, '321 Pine St, Othercity, USA', 'hotel28@example.com', '115-456-7890'),
-    (29, 'Travelodge', 45000000000, 4, '987 Cedar St, Anothercity, USA', 'hotel29@example.com', '201-567-8901'),
-    (30, 'Travelodge', 46000000000, 3, '654 Birch St, Yetanothercity, USA', 'hotel30@example.com', '345-678-9012'),
-    (31, 'Travelodge', 47000000000, 4, '123 Willow St, Finalcity, USA', 'hotel31@example.com', '456-789-0123'),
-    (32, 'GreenTree Inns', 50000000000, 4, '123 Oak St, Anycity, Canada', 'hotel32@example.com', '129-222-3333'),
-    (33, 'GreenTree Inns', 51000000000, 3, '456 Elm St, Anycity, Canada', 'hotel33@example.com', '768-555-6666'),
-    (34, 'GreenTree Inns', 52000000000, 5, '789 Maple St, Anystate, Canada', 'hotel34@example.com', '682-209-9999'),
-    (35, 'GreenTree Inns', 53000000000, 2, '321 Pine St, Othercity, USA', 'hotel35@example.com', '178-456-7890'),
-    (36, 'GreenTree Inns', 54000000000, 4, '987 Cedar St, Anothercity, USA', 'hotel36@example.com', '573-567-8901'),
-    (37, 'GreenTree Inns', 55000000000, 3, '654 Birch St, Yetanothercity, Canada', 'hotel37@example.com', '987-678-9012'),
-    (38, 'GreenTree Inns', 56000000000, 4, '123 Willow St, Finalcity, USA', 'hotel38@example.com', '788-789-0123'),
-    (39, 'GreenTree Inns', 57000000000, 3, '456 Cedar St, Lastcity, USA', 'hotel39@example.com', '333-890-1234')
-);
-
-INSERT INTO Amenity (amenity) VALUES (
+INSERT INTO Amenity (amenity) VALUES
     ('TV'),
     ('AC'),
-    ('fridge')
-);
+    ('fridge');
 
-INSERT INTO Room (room_id, hotel_id, price, capacity, view, extendable) 
-VALUES (
+INSERT INTO Room (room_id, hotel_id, price, capacity, view, extendable) VALUES 
+    (0, 39, 850.00, 1, 'sea', false),
+    (1, 39, 880.00, 2, 'sea', true),
+    (2, 39, 900.00, 3, 'mountain', true),
+    (3, 39, 920.00, 4, 'mountain', false),
+    (4, 39, 950.00, 5, 'sea', true),
     (5, 0, 150.00, 1, 'sea', true),
     (6, 0, 180.00, 2, 'mountain', true),
     (7, 0, 200.00, 3, 'sea', true),
@@ -103,12 +101,12 @@ VALUES (
     (31, 5, 240.00, 2, 'mountain', false),
     (32, 5, 260.00, 3, 'sea', true),
     (33, 5, 280.00, 4, 'mountain', false),
-    (34, 5, 310.00, 5, 'sea', true)
+    (34, 5, 310.00, 5, 'sea', true),
     (35, 6, 220.00, 1, 'sea', true),
     (36, 6, 250.00, 2, 'mountain', false),
     (37, 6, 270.00, 3, 'sea', true),
     (38, 6, 290.00, 4, 'mountain', false),
-    (39, 6, 320.00, 5, 'sea', true)
+    (39, 6, 320.00, 5, 'sea', true),
     (40, 7, 230.00, 1, 'sea', true),
     (41, 7, 260.00, 2, 'mountain', false),
     (42, 7, 280.00, 3, 'sea', true),
@@ -153,7 +151,7 @@ VALUES (
     (81, 15, 340.00, 2, 'mountain', false),
     (82, 15, 360.00, 3, 'sea', true),
     (83, 15, 380.00, 4, 'mountain', true),
-    (84, 15, 410.00, 5, 'sea', false)
+    (84, 15, 410.00, 5, 'sea', false),
     (85, 16, 420.00, 1, 'mountain', false),
     (86, 16, 450.00, 2, 'sea', true),
     (87, 16, 470.00, 3, 'sea', true),
@@ -268,13 +266,7 @@ VALUES (
     (196, 38, 870.00, 2, 'mountain', false),
     (197, 38, 890.00, 3, 'sea', true),
     (198, 38, 910.00, 4, 'mountain', true),
-    (199, 38, 940.00, 5, 'sea', false),
-    (0, 39, 850.00, 1, 'sea', false),
-    (1, 39, 880.00, 2, 'sea', true),
-    (2, 39, 900.00, 3, 'mountain', true),
-    (3, 39, 920.00, 4, 'mountain', false),
-    (4, 39, 950.00, 5, 'sea', true);
-);
+    (199, 38, 940.00, 5, 'sea', false);
 
 
 INSERT INTO RoomAmenityJoin (room_id, amenity) VALUES (0, 'TV');
@@ -565,3 +557,10 @@ INSERT INTO RoomAmenityJoin (room_id, amenity) VALUES (196, 'AC');
 INSERT INTO RoomAmenityJoin (room_id, amenity) VALUES (197, 'TV');
 INSERT INTO RoomAmenityJoin (room_id, amenity) VALUES (198, 'AC');
 INSERT INTO RoomAmenityJoin (room_id, amenity) VALUES (198, 'fridge');
+
+INSERT INTO Position(position) VALUES 
+    ('Manager'),
+    ('Security'),
+    ('Housekeeping'),
+    ('Maintenance'),
+    ('Food and Beverage');
