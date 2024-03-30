@@ -2,7 +2,7 @@ import StarRating from "./StarRating";
 
 function Book() {
   return (
-    <form className="w-1/2 mx-auto my-8 py-12 px-8 bg-slate-100 rounded-lg">
+    <form className="w-1/2 mx-auto my-8 py-12 px-8 bg-slate-100 rounded-lg bg-gray-300">
       <div className="space-y-12">
         {/* Dates */}
         <div>

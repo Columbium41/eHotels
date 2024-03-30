@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 function StarRating() {
-    const [rating, setRating] = useState(1);
+    const [rating, setRating] = useState(5);
 
     return (
         <div className="star-rating">

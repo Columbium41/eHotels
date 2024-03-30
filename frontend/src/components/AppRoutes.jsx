@@ -1,9 +1,9 @@
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import NotFound from "./NotFound";
 import Root from "./Root";
 import Book from "./Book";
 
-function AppRoutes() {
+function AppRoutes({ customerUI }) {
     const location = useLocation();
 
     return (
@@ -14,7 +14,7 @@ function AppRoutes() {
             />
             <Route 
                 exact path="/book"
-                element={<Book />}
+                element={ customerUI ? <Book /> : <Navigate to="/" /> }
             />
             <Route 
                 path="*" 
