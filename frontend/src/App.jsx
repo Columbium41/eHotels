@@ -6,11 +6,13 @@ import Navbar from './components/Navbar';
 import AppRoutes from './components/AppRoutes';
 
 function App() {
+  const [customerUI, setCustomerUI] = useState(true);
+
   return (
     <div className="">
       <Router basename="/">
         <div className="">
-          <Navbar />
+          <Navbar customerUI={customerUI} setCustomerUI={setCustomerUI} />
 
           <main>
             <AppRoutes />
