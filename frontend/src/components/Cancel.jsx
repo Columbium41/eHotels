@@ -5,25 +5,42 @@ function Cancel() {
   const [results, setResults] = useState([]);
   const [selectedResult, setSelectedResult] = useState(null);
 
+  //test if this actually works
+  // in order to get this to work you need to change searchText in the imput of response to the query I think
+  /* const handleSearch = async () => {
+    try {
+      // Fetch booking data from the SQL database
+      const response = await fetch(`/api/bookings?search=${searchText}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch booking data');
+      }
+      const data = await response.json();
+      setResults(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }; */
+
+  //for testing
   const handleSearch = () => {
-    // fetch the database information from here and store it in a array like the example
-    const dummyData = ["Michael", "Threat", "Hum"];
+    const dummyData = [
+      { name: 'Michael Mansions', city: 'Shurima', capacity: 111, price: 400 },
+      { name: 'Threat Towers', city: 'Ishtar', capacity: 222, price: 9999 },
+      { name: 'Hum Hotels', city: 'Demacia', capacity: 333, price: 1 }
+    ];
     setResults(dummyData);
   };
 
-  // handles clicking search
   const handleResultClick = (result) => {
     setSelectedResult(result);
   };
 
-  // handles clicking close
   const handleClosePopup = () => {
     setSelectedResult(null);
   };
 
-  // BIG function !!! Will handle the removal of the booking from the database
   const handleCancelPopup = () => {
-    //does nothing rn
+    // cancelling the booking code goes here
   };
 
   return (
@@ -52,7 +69,7 @@ function Cancel() {
               className="mb-2 cursor-pointer"
               onClick={() => handleResultClick(result)}
             >
-              {result}
+              {result.name}, in {result.city}, at {result.capacity} capacity, for {result.price}$
             </li>
           ))}
         </ul>
@@ -62,7 +79,7 @@ function Cancel() {
         <div className="popup-overlay">
           <div className="popup-content bg-white p-4 rounded-lg shadow-md">
             <h2 className="text-lg font-semibold mb-4">Selected Booking</h2>
-            <p>{selectedResult}</p>
+            <p>{selectedResult.name}, {selectedResult.city}, {selectedResult.capacity}, {selectedResult.price}</p>
             <button
               className="mt-4 bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               onClick={handleClosePopup}
@@ -70,7 +87,7 @@ function Cancel() {
             <button
               className="mt-4 ml-4 bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               onClick={handleCancelPopup}
-            > Cancel </button>
+            > Cancel Booking</button>
           </div>
         </div>
       )}
