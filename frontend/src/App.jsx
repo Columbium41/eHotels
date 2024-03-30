@@ -15,7 +15,7 @@ function App() {
           <Navbar customerUI={customerUI} setCustomerUI={setCustomerUI} />
 
           <main>
-            <AppRoutes />
+            <AppRoutes customerUI={customerUI} />
           </main>
         </div>
       </Router>
