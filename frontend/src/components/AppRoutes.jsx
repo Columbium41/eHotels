@@ -2,6 +2,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import NotFound from "./NotFound";
 import Root from "./Root";
 import Book from "./Book";
+import Cancel from "./Cancel";
 
 function AppRoutes() {
     const location = useLocation();
@@ -15,6 +16,10 @@ function AppRoutes() {
             <Route 
                 exact path="/book"
                 element={<Book />}
+            />
+            <Route 
+                exact path="/cancel"
+                element={<Cancel />}
             />
             <Route 
                 path="*" 

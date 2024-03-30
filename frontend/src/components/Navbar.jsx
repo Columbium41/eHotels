@@ -11,7 +11,7 @@ function Navbar() {
     const [navigation, setNavigation] = useState([
         { name: 'Home', to: '/', current: true },
         { name: 'Book', to: '/book', current: false },
-        { name: 'Link 3', to: '/link_3', current: false },
+        { name: 'Cancel', to: '/cancel', current: false },
         { name: 'Link 4', to: '/link_4', current: false },
     ]);
 
