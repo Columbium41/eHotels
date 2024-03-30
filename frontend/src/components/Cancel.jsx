@@ -7,7 +7,7 @@ function Cancel() {
 
   //test if this actually works
   // in order to get this to work you need to change searchText in the imput of response to the query I think
-  /* const handleSearch = async () => {
+  const handleSearch = async () => {
     try {
       // Fetch booking data from the SQL database
       const response = await fetch(`/api/bookings?search=${searchText}`);
@@ -19,17 +19,17 @@ function Cancel() {
     } catch (error) {
       console.error(error);
     }
-  }; */
+  }; 
 
   //for testing
-  const handleSearch = () => {
-    const dummyData = [
-      { name: 'Michael Mansions', city: 'Shurima', capacity: 111, price: 400 },
-      { name: 'Threat Towers', city: 'Ishtar', capacity: 222, price: 9999 },
-      { name: 'Hum Hotels', city: 'Demacia', capacity: 333, price: 1 }
-    ];
-    setResults(dummyData);
-  };
+  // const handleSearch = () => {
+  //   const dummyData = [
+  //     { name: 'Michael Mansions', city: 'Shurima', capacity: 111, price: 400 },
+  //     { name: 'Threat Towers', city: 'Ishtar', capacity: 222, price: 9999 },
+  //     { name: 'Hum Hotels', city: 'Demacia', capacity: 333, price: 1 }
+  //   ];
+  //   setResults(dummyData);
+  // };
 
   const handleResultClick = (result) => {
     setSelectedResult(result);
