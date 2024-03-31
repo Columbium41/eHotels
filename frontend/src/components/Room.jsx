@@ -13,7 +13,7 @@ function Room({ roomData }) {
             <CardBody>
                 <Typography variant="h5" color="blue-gray" className="mb-4">
                     { roomData.hotel_chain_name + " " + roomData.street + ": Room " + roomData.room_id }
-                    <StarRating setFormData={null} clickable={false} defaultStars={roomData.rating} />
+                    <StarRating formData={null} setFormData={null} clickable={false} defaultStars={roomData.rating} />
                 </Typography>
                 <Typography className="text-black">
                     Region: { roomData.region + ", " + roomData.country }<br />

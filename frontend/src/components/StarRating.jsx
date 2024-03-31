@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function StarRating({ setFormData, clickable, defaultStars }) {
+function StarRating({ formData, setFormData, clickable, defaultStars }) {
     const [rating, setRating] = useState(defaultStars);
 
     return (

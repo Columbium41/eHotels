@@ -92,7 +92,7 @@ function BookingForm({ setFormSubmitted, setRoomData }) {
                 {/* Category */}
                 <div>
                     <label htmlFor="star-rating">Rating: </label>
-                    <StarRating setFormData={setFormData} clickable={true} defaultStars={3} />
+                    <StarRating formData={formData} setFormData={setFormData} clickable={true} defaultStars={3} />
                 </div>
 
                 {/* # of rooms */}
