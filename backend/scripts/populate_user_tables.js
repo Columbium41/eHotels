@@ -44,7 +44,11 @@ async function populateUserData() {
 
     try {
         await client.query('BEGIN');
-        
+
+        // populate preset users
+        await client.query(`INSERT INTO Customer (customer_SSN, first_name, middle_name, last_name, address) VALUES ('123 456 789', 'John', 'Customer', 'Doe', '123 This Street, Ottawa, Ontario, Canada')`);
+        await client.query(`INSERT INTO Employee (employee_SSN, hotel_id, first_name, middle_name, last_name, address) VALUES ('987 654 321', '0', 'Jane', 'Employee', 'Doe', '123 That Street, Ottawa, Ontario, Canada')`);
+
         // populate managers
         for (const [ssn, h_id, fn, mn, ln, address] of employeeData) { 
             await client.query('INSERT INTO Employee (employee_SSN, hotel_id, first_name, middle_name, last_name, address) VALUES ($1, $2, $3, $4, $5, $6)', [ssn, h_id, fn, mn, ln, address]);

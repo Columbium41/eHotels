@@ -1,6 +1,10 @@
 # eHotels
 WIP Description aaa
 
+## Account Sign-In Details
+#### Employee SSN: 123 456 789
+#### Customer SSN: 987 654 321
+
 ## Dev Environment Setup
 1. Clone the repository
 ```bash
@@ -45,9 +49,17 @@ PG_PORT = "<your postgresql's port (by default 5432)>"
 6. Populate Local Database
 ```bash
 cd backend
-psql -p <your postgresql port> -U ehotelsuser -d ehotels < ./backend/scripts/drop_tables.sql # run before if database is not empty
+
+# Drop tables
+psql -p <your postgresql port> -U ehotelsuser -d ehotels < ./backend/scripts/drop_tables.sql
+
+# Create tables
 psql -p <your postgresql port> -U ehotelsuser -d ehotels < ./backend/scripts/create_tables.sql
+
+# Populate Hotel Tables
 psql -p <your postgresql port> -U ehotelsuser -d ehotels < ./backend/scripts/populate_hotel_tables.sql
+
+# Populate user tables
 node ./backend/scripts/populate_user_tables.js
 ```
 
