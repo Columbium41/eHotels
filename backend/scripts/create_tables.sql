@@ -90,7 +90,8 @@ CREATE TABLE IF NOT EXISTS Archive(
     room_id int,
     type varchar(255),
     start_date timestamp,
-    end_date timestamp
+    end_date timestamp,
+    cost decimal(10, 2) CHECK (cost >= 0)
 );
 
 -- BookingRentings
