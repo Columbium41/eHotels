@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-function StarRating({ formData, setFormData }) {
-    const [rating, setRating] = useState(3);
+function StarRating({ setFormData, clickable, defaultStars }) {
+    const [rating, setRating] = useState(defaultStars);
 
     return (
         <div className="star-rating">
@@ -14,8 +14,13 @@ function StarRating({ formData, setFormData }) {
                     key={index}
                     className={(index <= (rating) ? "text-amber-500" : "text-black") + " text-3xl mr-1"}
                     onClick={() => {
-                        setRating(index);
-                        setFormData({ ...formData, rating: index });
+                        if (clickable) {
+                            setRating(index);
+                            
+                            if (setFormData !== null) {
+                                setFormData({ ...formData, rating: index });
+                            }
+                        }
                     }}
                 >
                     <span className="star">&#9733;</span>
