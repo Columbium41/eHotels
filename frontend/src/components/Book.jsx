@@ -27,7 +27,7 @@ function Book({ user }) {
   return (
     <>
       {formSubmitted 
-        ? <BookingRooms formData={formData} roomData={roomData} setFormSubmitted={setFormSubmitted} /> 
+        ? <BookingRooms formData={formData} roomData={roomData} setFormSubmitted={setFormSubmitted} user={user} /> 
         : <BookingForm formData={formData} setFormData={setFormData} setFormSubmitted={setFormSubmitted} setRoomData={setRoomData} />
       }
     </>

@@ -15,18 +15,25 @@ function getNumberOfDaysBetweenDates(startDate, endDate) {
     return days + 1;
 }
 
+router.get('/', async (req, res) => {
+    try {
+        const query = `SELECT * From Archive NATURAL JOIN Room NATURAL JOIN Hotel WHERE customer_ssn='${req.query.ssn}'`;
+        const result = await req.pgClient.query(query);
+        const archives = result.rows;
+        res.json(archives);
+    } catch(err) {
+        console.error('Error executing query:', err);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
 router.post('/', async (req, res) => {
     try {
-        const startDate = req.body.start_date;
-        const endDate = req.body.end_date;
+        let query = `INSERT INTO Archive (room_id, customer_SSN, employee_SSN, type, start_date, end_date, cost) VALUES
+                     (${req.body.room_id}, '${req.body.customer_ssn}', NULL, 'booking', '${req.body.start_date}', '${req.body.end_date}', '${getNumberOfDaysBetweenDates(new Date(req.body.start_date), new Date(req.body.end_date)) * req.body.price}')`;
 
-        let query = `INSERT INTO Archive (room_id, type, start_date, end_date, cost) VALUES
-                     (${req.body.room_id}, 'booking', '${req.body.start_date}', '${req.body.end_date}', '${getNumberOfDaysBetweenDates(new Date(req.body.start_date), new Date(req.body.end_date)) * req.body.price}')`;
-        
         const result = await req.pgClient.query(query);
-        console.log(result);
-
-        res.status(200);
+        res.status(200).json(result);
     } catch(err) {
         console.error('Error executing query:', err);
         res.status(500).json({ error: 'Internal server error' });

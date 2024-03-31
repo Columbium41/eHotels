@@ -9,7 +9,7 @@ import StarRating from "./StarRating";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function Room({ formData, roomData }) {
+function Room({ user, formData, roomData }) {
     const navigate = useNavigate();
 
     const handleClick = async (e) => {
@@ -17,10 +17,11 @@ function Room({ formData, roomData }) {
 
         try {
             const response = await axios.post('http://localhost:3000/api/archives/', 
-                { ...roomData, start_date: formData.start_date, end_date: formData.end_date });
+                { ...roomData, start_date: formData.start_date, end_date: formData.end_date, customer_ssn: user.customer_ssn });
 
             if (response.status === 200) {
-                navigate('/');
+                console.log("REDIRECT")
+                navigate('/customer_archives');
             }
         } catch (err) {
             console.error("error submitting form:", err);   
@@ -38,7 +39,7 @@ function Room({ formData, roomData }) {
                     Region: { roomData.region + ", " + roomData.country }<br />
                     Capacity: { roomData.capacity }<br />
                     Extendable: { roomData.extendable ? "yes" : "no" }<br />
-                    Price: ${ roomData.price }<br />
+                    Price: ${ roomData.price }/day<br />
                     View: { roomData.view }
                 </Typography>
             </CardBody>

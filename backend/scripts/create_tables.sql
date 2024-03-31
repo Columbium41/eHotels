@@ -92,18 +92,12 @@ CREATE TABLE IF NOT EXISTS Customer(
 CREATE TABLE IF NOT EXISTS Archive(
     archive_id SERIAL PRIMARY KEY,
     room_id int,
+    customer_SSN varchar(11),
+    employee_SSN varchar(11) NULL,
     type varchar(255),
     start_date timestamp,
     end_date timestamp,
     cost decimal(10, 2) CHECK (cost >= 0)
-);
-
--- BookingRentings
-CREATE TABLE IF NOT EXISTS BookingRenting(
-    booking_renting_id SERIAL PRIMARY KEY,
-    archive_id int,
-    employee_SSN varchar(11),
-    customer_SSN varchar(11)
 );
 
 -- Foreign Key Constraints
@@ -125,7 +119,5 @@ ALTER TABLE EmployeePositionJoin ADD CONSTRAINT fk_employee_SSN FOREIGN KEY (emp
 ALTER TABLE EmployeePositionJoin ADD CONSTRAINT fk_position FOREIGN KEY (position) REFERENCES Position(position);
 
 ALTER TABLE Archive ADD CONSTRAINT fk_room_id FOREIGN KEY (room_id) REFERENCES Room(room_id);
-
-ALTER TABLE BookingRenting ADD CONSTRAINT fk_archive_id FOREIGN KEY (archive_id) REFERENCES Archive(archive_id);
-ALTER TABLE BookingRenting ADD CONSTRAINT fk_employee_SSN FOREIGN KEY (employee_SSN) REFERENCES Employee(employee_SSN);
-ALTER TABLE BookingRenting ADD CONSTRAINT fk_customer_SSN FOREIGN KEY (customer_SSN) REFERENCES Customer(customer_SSN);
+ALTER TABLE Archive ADD CONSTRAINT fk_customer_SSN FOREIGN KEY (customer_SSN) REFERENCES Customer(customer_SSN);
+ALTER TABLE Archive ADD CONSTRAINT fk_employee_SSN FOREIGN KEY (employee_SSN) REFERENCES Employee(employee_SSN);

@@ -35,6 +35,11 @@ function Root({ customerUI, user, setUser }) {
         }
     }
 
+    const handleLogout = (e) => {
+        sessionStorage.removeItem('ssn');
+        window.location.reload();
+    }
+
     return (
         <div className="text-center my-8">
             { user === null ? 
@@ -62,6 +67,9 @@ function Root({ customerUI, user, setUser }) {
                     <Typography>
                         Welcome { user.full_name }, you are logged in as { customerUI ? 'a Customer' : 'an Employee' }
                     </Typography>
+                    <Button className="mt-3 bg-red-500" onClick={handleLogout}>
+                        Logout
+                    </Button>
                 </div>
             }
         </div>
