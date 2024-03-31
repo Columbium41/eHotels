@@ -21,7 +21,11 @@ CREATE TABLE IF NOT EXISTS Hotel(
     hotel_id int PRIMARY KEY,
     hotel_chain_name varchar(255),
     rating int CHECK (rating >= 1 AND rating <= 5),
-    address varchar(255),
+    street varchar(50),
+    city varchar(40),
+    region varchar(30),
+    country varchar(10),
+    address varchar(130) GENERATED ALWAYS AS (street || ', ' || city || ', ' || region || ', ' || country) STORED,
     email varchar(255),
     phone_number varchar(20)
 );
