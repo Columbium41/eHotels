@@ -14,19 +14,19 @@ router.get('/search', async (req, res) => {
                     HotelRoomCounts AS (
                         SELECT COUNT(room_id) AS room_count,
                             Hotel.*
-                        FROM Hotel NATURAL JOIN ValidRooms
+                        FROM Hotel NATURAL JOIN Room
                         GROUP BY Hotel.hotel_id
                         HAVING COUNT(room_id)>=${req.query.number_of_rooms === '' ? '1' : req.query.number_of_room}
                     )
 
                     SELECT HotelChain.address AS hotel_chain_address,
                         HotelRoomCounts.*,
-                        Room.room_id,
-                        Room.price,
-                        Room.capacity,
-                        Room.view,
-                        Room.extendable
-                        FROM (HotelChain JOIN HotelRoomCounts ON HotelChain.hotel_chain_name = HotelRoomCounts.hotel_chain_name) NATURAL JOIN Room
+                        ValidRooms.room_id,
+                        ValidRooms.price,
+                        ValidRooms.capacity,
+                        ValidRooms.view,
+                        ValidRooms.extendable
+                        FROM (HotelChain JOIN HotelRoomCounts ON HotelChain.hotel_chain_name = HotelRoomCounts.hotel_chain_name) NATURAL JOIN ValidRooms
                     WHERE rating>=${req.query.rating}`;
             
         if (req.query.room_capacity !== '') {
@@ -42,7 +42,7 @@ router.get('/search', async (req, res) => {
             query += `\nand price<=${req.query.price}`;
         }
         
-        query += `\n ORDER BY Room.price`;
+        query += `\n ORDER BY ValidRooms.price`;
 
         const result = await req.pgClient.query(query);
         const rooms = result.rows;

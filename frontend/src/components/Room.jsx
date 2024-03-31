@@ -6,8 +6,27 @@ import {
     Button,
   } from "@material-tailwind/react";
 import StarRating from "./StarRating";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-function Room({ roomData }) {
+function Room({ formData, roomData }) {
+    const navigate = useNavigate();
+
+    const handleClick = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await axios.post('http://localhost:3000/api/archives/', 
+                { ...roomData, start_date: formData.start_date, end_date: formData.end_date });
+
+            if (response.status === 200) {
+                navigate('/');
+            }
+        } catch (err) {
+            console.error("error submitting form:", err);   
+        }
+    };
+
     return (
         <Card className="w-1/5 bg-gray-300">
             <CardBody>
@@ -24,7 +43,7 @@ function Room({ roomData }) {
                 </Typography>
             </CardBody>
             <CardFooter className="pt-0">
-                <Button>Book</Button>
+                <Button onClick={handleClick}>Book</Button>
             </CardFooter>
         </Card> 
     )

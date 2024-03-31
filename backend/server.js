@@ -31,6 +31,9 @@ app.use('/api/hotels', hotelsRouter);
 const roomsRouter = require('./routes/rooms');
 app.use('/api/rooms', roomsRouter);
 
+const archivesRouter = require('./routes/archives');
+app.use('/api/archives', archivesRouter);
+
 // Start the server
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}\n`);
