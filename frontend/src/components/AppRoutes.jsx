@@ -14,7 +14,7 @@ function AppRoutes({ customerUI, user, setUser }) {
             />
             <Route 
                 exact path="/book"
-                element={ customerUI ? <Book user={user} /> : <Navigate to="/" /> }
+                element={ user !== null && customerUI ? <Book user={user} /> : <Navigate to="/" /> }
             />
             <Route 
                 path="*" 
