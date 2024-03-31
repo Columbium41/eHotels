@@ -2,12 +2,19 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import StarRating from "./StarRating";
 
+function formatDate(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
+
 function BookingForm({ setFormSubmitted, setRoomData }) {
     const [hotelChainNames, setHotelChainNames] = useState([]);
 
     const [formData, setFormData] = useState({
-        start_date: '',
-        end_date: '',
+        start_date: formatDate(new Date()),
+        end_date: formatDate(new Date()),
         room_capacity: '1',
         city: '',
         hotel_chain_name: 'Any',

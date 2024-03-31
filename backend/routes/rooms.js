@@ -3,23 +3,31 @@ const router = express.Router();
 
 router.get('/search', async (req, res) => {
     try {
-        let query =  `WITH HotelRoomCounts AS (
-                            SELECT COUNT(room_id) AS room_count,
-                                   Hotel.*
-                            FROM Hotel NATURAL JOIN Room
-                            GROUP BY Hotel.hotel_id
-                            HAVING COUNT(room_id)>=${req.query.number_of_rooms === '' ? 1 : req.query.number_of_rooms}
-                        )
-                        
-                        SELECT HotelChain.address AS hotel_chain_address,
-                            HotelRoomCounts.*,
-                            Room.room_id,
-                            Room.price,
-                            Room.capacity,
-                            Room.view,
-                            Room.extendable
-                            FROM (HotelChain JOIN HotelRoomCounts ON HotelChain.hotel_chain_name = HotelRoomCounts.hotel_chain_name) NATURAL JOIN Room
-                        WHERE rating>=${req.query.rating}`;
+        let query =`WITH ValidRooms AS (
+                        SELECT Room.*
+                        FROM Room
+                        LEFT JOIN Archive ON Room.room_id = Archive.room_id
+                                        AND (Archive.start_date BETWEEN '${req.query.start_date}' AND '${req.query.end_date}'
+                                            OR Archive.end_date BETWEEN '${req.query.start_date}' AND '${req.query.end_date}')
+                        WHERE Archive.room_id IS NULL
+                    ),
+                    HotelRoomCounts AS (
+                        SELECT COUNT(room_id) AS room_count,
+                            Hotel.*
+                        FROM Hotel NATURAL JOIN ValidRooms
+                        GROUP BY Hotel.hotel_id
+                        HAVING COUNT(room_id)>=${req.query.number_of_rooms === '' ? '1' : req.query.number_of_room}
+                    )
+
+                    SELECT HotelChain.address AS hotel_chain_address,
+                        HotelRoomCounts.*,
+                        Room.room_id,
+                        Room.price,
+                        Room.capacity,
+                        Room.view,
+                        Room.extendable
+                        FROM (HotelChain JOIN HotelRoomCounts ON HotelChain.hotel_chain_name = HotelRoomCounts.hotel_chain_name) NATURAL JOIN Room
+                    WHERE rating>=${req.query.rating}`;
             
         if (req.query.room_capacity !== '') {
             query += `\nand capacity=${req.query.room_capacity}`;
