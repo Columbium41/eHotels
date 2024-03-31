@@ -1,11 +1,13 @@
 import { Switch } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
 
-function Toggle({ customerUI, setCustomerUI }) {
+function Toggle({ customerUI, setCustomerUI, setUser }) {
     const navigate = useNavigate();
 
     const handleChange = () => {
         setCustomerUI(!customerUI);
+        sessionStorage.removeItem('ssn');
+        setUser(null);
         navigate("/");
     };
 

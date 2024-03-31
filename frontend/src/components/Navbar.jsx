@@ -6,7 +6,7 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ');
 }
 
-function Navbar({ customerUI, setCustomerUI }) {
+function Navbar({ customerUI, setCustomerUI, setUser }) {
     const location = useLocation();
 
     const [customerNav, setCustomerNav] = useState([
@@ -88,7 +88,7 @@ function Navbar({ customerUI, setCustomerUI }) {
                     </div>
 
                     <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 border-red-200 border-solid">
-                        <Toggle customerUI={customerUI} setCustomerUI={setCustomerUI} />
+                        <Toggle customerUI={customerUI} setCustomerUI={setCustomerUI} setUser={setUser} />
                     </div>
                 </div>
             </div>

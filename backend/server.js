@@ -19,6 +19,9 @@ app.use(cors({
 }));
 
 // Routers
+const authRouter = require('./routes/auth');
+app.use('/api/auth', authRouter);
+
 const hotelChainsRouter = require('./routes/hotel_chains');
 app.use('/api/hotel_chains', hotelChainsRouter);
 
