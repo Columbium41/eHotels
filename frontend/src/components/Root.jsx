@@ -63,14 +63,29 @@ function Root({ customerUI, user, setUser }) {
                     </Typography>
                 </form>
                 :
-                <div>
-                    <Typography>
-                        Welcome { user.full_name }, you are logged in as { customerUI ? 'a Customer' : 'an Employee' }
-                    </Typography>
-                    <Button className="mt-3 bg-red-500" onClick={handleLogout}>
-                        Logout
-                    </Button>
-                </div>
+                <>
+                    <div className="mb-3">
+                        <Typography variant="h2" className="mb-2">
+                            E-Hotels
+                        </Typography>
+                        <Typography>    
+                            Welcome to the E-Hotels booking system { user.full_name }, 
+                            you are logged in as { customerUI ? 'a Customer' : 'an Employee' }.
+                        </Typography>
+                        { customerUI && 
+                            <Typography>
+                                We have collaborated with 5 hotel chains and 40 hotels from across North America to deliver
+                                the best booking experience for you.<br />
+                                In order to book a room from our partnered hotels, click on the Book link in the navbar.
+                            </Typography>
+                        }
+                    </div>
+                    <div>
+                        <Button className="mt-3 bg-red-500" onClick={handleLogout}>
+                            Logout
+                        </Button>
+                    </div>
+                </>
             }
         </div>
     )

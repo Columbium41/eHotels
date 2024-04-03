@@ -12,7 +12,7 @@ function Navbar({ customerUI, setCustomerUI, setUser }) {
     const [customerNav, setCustomerNav] = useState([
         { name: 'Home', to: '/', current: true },
         { name: 'Book', to: '/book', current: false },
-        { name: 'Archives', to: '/customer_archives', current: false }
+        { name: 'My Bookings', to: '/customer_archives', current: false }
     ]);
 
     const [employeeNav, setEmployeeNav] = useState([
