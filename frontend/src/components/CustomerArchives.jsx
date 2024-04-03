@@ -37,7 +37,8 @@ function CustomerArchives({ user }) {
                             Capacity: { archive.capacity }<br />
                             Cost: ${ archive.cost }<br />
                             View: { archive.view }<br />
-                            Dates: { formatDate(archive.start_date) } - { formatDate(archive.end_date) }
+                            Dates: { formatDate(archive.start_date) } - { formatDate(archive.end_date) }<br />
+                            Status: { archive.type }
                         </Typography>
                     </CardBody>
                 </Card> 
