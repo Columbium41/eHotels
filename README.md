@@ -56,6 +56,9 @@ psql -p <your postgresql port> -U ehotelsuser -d ehotels < ./backend/scripts/dro
 # Create tables
 psql -p <your postgresql port> -U ehotelsuser -d ehotels < ./backend/scripts/create_tables.sql
 
+# Create Views
+psql -p <your postgresql port> -U ehotelsuser -d ehotels < ./backend/scripts/create_views.sql
+
 # Populate Hotel Tables
 psql -p <your postgresql port> -U ehotelsuser -d ehotels < ./backend/scripts/populate_hotel_tables.sql
 
