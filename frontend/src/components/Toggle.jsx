@@ -1,5 +1,6 @@
 import { Switch } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 function Toggle({ customerUI, setCustomerUI, setUser }) {
     const navigate = useNavigate();
@@ -7,9 +8,17 @@ function Toggle({ customerUI, setCustomerUI, setUser }) {
     const handleChange = () => {
         setCustomerUI(!customerUI);
         sessionStorage.removeItem('ssn');
+        sessionStorage.setItem('isChecked', !customerUI);
         setUser(null);
         navigate("/");
     };
+
+    useEffect(() => {
+        const savedState = sessionStorage.getItem('isChecked');
+        if (savedState !== null) {
+            setCustomerUI(savedState === 'true');
+        }
+    }, []);
 
     return (
         <>

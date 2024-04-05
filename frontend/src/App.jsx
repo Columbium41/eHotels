@@ -11,9 +11,10 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       const ssn = sessionStorage.getItem('ssn');
+      const isCustomer = sessionStorage.getItem('isChecked');
 
       if (ssn !== null) {
-        const response = await axios.get('http://localhost:3000/api/auth/login', { params: new URLSearchParams({ ssn: ssn, isCustomer: customerUI }) });
+        const response = await axios.get('http://localhost:3000/api/auth/login', { params: new URLSearchParams({ ssn: ssn, isCustomer: (isCustomer === null || isCustomer === 'true') }) });
 
         if (response.status === 201) {
           console.error("error fetching user");
