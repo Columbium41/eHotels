@@ -7,7 +7,7 @@ const pgClientMiddleware = require('./middleware/pgClient');
 const requestLoggerMiddleware = require('./middleware/requestLogger');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(pgClientMiddleware);
@@ -33,6 +33,9 @@ app.use('/api/rooms', roomsRouter);
 
 const archivesRouter = require('./routes/archives');
 app.use('/api/archives', archivesRouter);
+
+const rentingRouter = require('./routes/renting');
+app.use('/api/renting', rentingRouter)
 
 // Start the server
 app.listen(PORT, () => {
