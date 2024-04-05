@@ -17,7 +17,7 @@ function Navbar({ customerUI, setCustomerUI, setUser }) {
 
     const [employeeNav, setEmployeeNav] = useState([
         { name: 'Home', to: '/', current: true },
-        { name: 'Booking Check-in', to: '/booking', current: false},
+        { name: 'Booking Check-in', to: '/check_in', current: false},
         { name: 'Create Renting', to: '/renting', current: false},
         { name: 'Customer', to: '/customer', current: false },
         { name: 'Employee', to: '/employee', current: false },
