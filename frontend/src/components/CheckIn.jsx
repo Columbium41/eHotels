@@ -10,7 +10,7 @@ const CheckIn = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios.get('http://localhost:3000/api/archives');
+            const response = await axios.get('http://localhost:3000/api/archives/checkin');
             setArchives(response.data);
         };
 
@@ -33,14 +33,41 @@ const CheckIn = () => {
         setShowAddForm(false);
     };
 
+    async function handleSubmit(){
+        try {
+            let id = document.getElementById("booking_id").value;
+            let ssn = document.getElementById("employee_ssn").value;
+            if (ssn != null){
+                
+            
+                await axios.post('http://localhost:3000/api/archives/checkin', {
+                    
+                        archive_id: id,
+                        employee_ssn: ssn
+                });
+            }
+
+        } catch (err) {
+            console.error("error submitting form:", err);   
+        }
+
+    }
+
     return (
         <div className="container mx-auto p-4">
             <h1 className="text-4xl font-bold mb-8 text-center">Check-In</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {archives.map((archive, index) => (
                     <div key={index} onClick={() => handleArchiveClick(archive)} className="bg-gray-200 p-3 rounded cursor-pointer">
-                        <h2 className="text-lg font-bold">{archive.archive_id}</h2>
-                        <p className="text-gray">{archive.room_id}</p>
+                        
+                        <h2 className="text-lg font-bold"> Booking ID: {archive.archive_id}</h2>
+                        <p className="text-gray">Room ID: {archive.room_id}</p>
+                        <p className="text-gray">Customer SSN: {archive.customer_ssn}</p>
+                        <p className="text-gray">Start Date: {archive.start_date}</p>
+                        <p className="text-gray">End Date: {archive.end_date}</p>
+                        <p className="text-gray">Total Cost: {archive.cost}</p>
+
+
                     </div>
                 ))}
             </div>
@@ -48,17 +75,20 @@ const CheckIn = () => {
                 <div className="fixed inset-0 flex justify-center items-center bg-gray-800 bg-opacity-75 z-10">
                     <div className="bg-white rounded-lg p-8 max-w-md">
                         <div className="flex justify-between items-center mb-4">
-                            <h2 className="text-xl font-bold">{selectedArchive.archive_id}</h2>
+                            <laabel> Booking ID:</laabel>
+                            <h2 className="text-xl font-bold" id='booking_id'>{selectedArchive.archive_id}</h2>
                             <button onClick={closeModel} className="text-gray-700 hover:text-gray-900">&times;</button>
                         </div>
-                        <input type="text" name="room_id" value={updatedArchive.room_id} onChange={handleInputChange} className="block w-full border-gray-300 rounded-md mb-2 px-4 py-2" placeholder="Room ID" />
-                        <input type="text" name="customer_ssn" value={updatedArchive.customer_ssn} onChange={handleInputChange} className="block w-full border-gray-300 rounded-md mb-2 px-4 py-2" placeholder="Customer SSN" />
-                        <input type="text" name="employee_ssn" value={updatedArchive.employee_ssn} onChange={handleInputChange} className="block w-full border-gray-300 rounded-md mb-2 px-4 py-2" placeholder="Employee SSN" />
-                        <input type="text" name="type" value={updatedArchive.type} onChange={handleInputChange} className="block w-full border-gray-300 rounded-md mb-2 px-4 py-2" placeholder="Type" />
-                        <input type="text" name="start_date" value={updatedArchive.start_date} onChange={handleInputChange} className="block w-full border-gray-300 rounded-md mb-2 px-4 py-2" placeholder="Start Date" />
-                        <input type="text" name="end_date" value={updatedArchive.end_date} onChange={handleInputChange} className="block w-full border-gray-300 rounded-md mb-2 px-4 py-2" placeholder="End Date" />
-                        <input type="text" name="cost" value={updatedArchive.cost} onChange={handleInputChange} className="block w-full border-gray-300 rounded-md mb-4 px-4 py-2" placeholder="Cost" />
+                        <input type="text" id="employee_ssn" onChange={handleInputChange} className="block w-full border-gray-300 rounded-md mb-2 px-4 py-2" placeholder='Input Employee SSN rent' />
+                        <button
+                        type="submit"
+                        className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        onClick ="handleSubmit()">                 
+                        Transform to Renting
+                        </button>
                     </div>
+                  
+                    
                 </div>
             )}
         </div>
