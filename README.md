@@ -63,7 +63,7 @@ psql -p <your postgresql port> -U ehotelsuser -d ehotels < ./backend/scripts/cre
 psql -p <your postgresql port> -U ehotelsuser -d ehotels < ./backend/scripts/populate_hotel_tables.sql
 
 # Populate user tables
-node ./backend/scripts/populate_user_tables.js
+node ./scripts/populate_user_tables.js
 ```
 
 7. Run the app
