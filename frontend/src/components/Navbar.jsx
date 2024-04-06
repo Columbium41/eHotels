@@ -17,7 +17,11 @@ function Navbar({ customerUI, setCustomerUI, setUser }) {
 
     const [employeeNav, setEmployeeNav] = useState([
         { name: 'Home', to: '/', current: true },
-        { name: 'Cancel', to: '/cancel', current: false }
+        { name: 'Booking Check-in', to: '/check_in', current: false},
+        { name: 'Create Renting', to: '/renting', current: false},
+        { name: 'Customer', to: '/customer', current: false },
+        { name: 'Employee', to: '/employee', current: false },
+        { name: 'Hotel', to: '/hotel', current: false }
     ]);
 
     // useEffect to highlight current URL in navbar
