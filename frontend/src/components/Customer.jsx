@@ -8,12 +8,12 @@ const Customer = () => {
     const [showAddForm, setShowAddForm] = useState(false);
     const [newCustomer, setNewCustomer] = useState({ customer_ssn:"", first_name:"", middle_name:"", last_name:"", address:""});
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await axios.get('http://localhost:3000/api/customers');
-            setCustomers(response.data);
-        };
+    const fetchData = async () => {
+        const response = await axios.get('http://localhost:3000/api/customers');
+        setCustomers(response.data);
+    };
 
+    useEffect(() => {
         fetchData();
     }, []);
 
@@ -36,29 +36,37 @@ const Customer = () => {
         setShowAddForm(false);
     };
 
-    const updateCustomer = () => {
-        // Needs to update the customer in the database
-        const updatedCustomers = customers.map((customer) =>
-            customer.id === updatedCustomer.id ? updatedCustomer : customer
-        );
-        setCustomers(updatedCustomers);
+    const updateCustomer = async () => {
+        const response = await axios.patch('http://localhost:3000/api/customers', { ...updatedCustomer, old_customer_ssn: selectedCustomer.customer_ssn });
+
         setSelectedCustomer(null);
         setUpdatedCustomer(null);
+
+        if (response.status === 200) {
+            fetchData();
+        }
     };
 
-    const deleteCustomer = () => {
-        // Delete needs to get proper deleting of data from the database
-        const filteredCustomers = customers.filter((customer) => customer.id !== updatedCustomer.id);
-        setCustomers(filteredCustomers);
+    const deleteCustomer = async () => {
+        const response = await axios.delete('http://localhost:3000/api/customers', { params: { customer_ssn: updatedCustomer.customer_ssn } });
+
         setSelectedCustomer(null);
         setUpdatedCustomer(null);
+
+        if (response.status === 200) {
+            fetchData();
+        }
     };
 
-    const addNewCustomer = () => {
-        // Add needs to actually update the database and not just update the local website
-        setCustomers([...customers, { ...newCustomer, id: Date.now() }]);
-        setNewCustomer({ customer_ssn: '', first_name: '', middle_name: '', last_name: '', address: '' }); //only adds locally
+    const addNewCustomer = async () => {
+        const response = await axios.post('http://localhost:3000/api/customers', newCustomer);
+
+        setNewCustomer({ customer_ssn: '', first_name: '', middle_name: '', last_name: '', address: '' }); 
         setShowAddForm(false);
+
+        if (response.status === 200) {
+            fetchData();
+        }
     };
 
     return (
