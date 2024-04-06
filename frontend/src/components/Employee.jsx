@@ -8,12 +8,12 @@ const Employee = () => {
     const [showAddForm, setShowAddForm] = useState(false);
     const [newEmployee, setNewEmployee] = useState({ employee_ssn:"", hotel_id:"", first_name:"", middle_name:"", last_name:"", address:""});
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await axios.get('http://localhost:3000/api/employees');
-            setEmployees(response.data);
-        };
+    const fetchData = async () => {
+        const response = await axios.get('http://localhost:3000/api/employees');
+        setEmployees(response.data);
+    };
 
+    useEffect(() => {
         fetchData();
     }, []);
 
@@ -36,29 +36,37 @@ const Employee = () => {
         setShowAddForm(false);
     };
 
-    const updateEmployee = () => {
-        // Needs to update the employee in the database
-        const updatedEmployees = employees.map((employee) =>
-            employee.id === updatedEmployee.id ? updatedEmployee : employee
-        );
-        setEmployees(updatedEmployees);
+    const updateEmployee = async () => {
+        const response = await axios.patch('http://localhost:3000/api/employees', { ...updatedEmployee, old_employee_ssn: selectedEmployee.employee_ssn });
+
         setSelectedEmployee(null);
         setUpdatedEmployee(null);
+
+        if (response.status === 200) {
+            fetchData();
+        }
     };
 
-    const deleteEmployee = () => {
-        // Delete needs to get proper deleting of data from the database
-        const filteredEmployees = employees.filter((employee) => employee.id !== updatedEmployee.id);
-        setEmployees(filteredEmployees);
+    const deleteEmployee = async () => {
+        const response = await axios.delete('http://localhost:3000/api/employees', { params: { employee_ssn: updatedEmployee.employee_ssn } });
+
         setSelectedEmployee(null);
         setUpdatedEmployee(null);
+
+        if (response.status === 200) {
+            fetchData();
+        }
     };
 
-    const addNewEmployee = () => {
-        // Add needs to actually update the database and not just update the local website
-        setEmployees([...employees, { ...newEmployee, id: Date.now() }]);
+    const addNewEmployee = async () => {
+        const response = await axios.post('http://localhost:3000/api/employees', newEmployee);
+
         setNewEmployee({ employee_ssn: "", hotel_id: "", first_name: "", middle_name: "", last_name: "", address: ""}); //only adds locally
         setShowAddForm(false);
+
+        if (response.status === 200) {
+            fetchData();
+        }
     };
 
     return (
