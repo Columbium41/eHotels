@@ -54,4 +54,29 @@ router.put('/', async (req, res) => {
     }
 });
 
+
+router.get('/checkin', async (req, res) => {
+    try {
+        const query = `SELECT * From Archive WHERE type='booking';`;
+        const result = await req.pgClient.query(query);
+        const archives = result.rows;
+        res.json(archives);
+    } catch(err) {
+        console.error('Error executing query:', err);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+router.post('/checkin', async (req, res) => {
+    try {
+        const query = `UPDATE Archive SET type = 'renting', employee_ssn = '${req.body.employee_ssn}' WHERE archive_id = '${req.body.archive_id}';`;
+        const result = await req.pgClient.query(query);
+        const archives = result.rows;
+        res.json(archives);
+    } catch(err) {
+        console.error('Error executing query:', err);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
 module.exports = router;
