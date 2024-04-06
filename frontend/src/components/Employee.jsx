@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const Employee = () => {
     const [employees, setEmployees] = useState([]);
@@ -8,7 +9,12 @@ const Employee = () => {
     const [newEmployee, setNewEmployee] = useState({ employee_ssn:"", hotel_id:"", first_name:"", middle_name:"", last_name:"", address:""});
 
     useEffect(() => {
-        //api goes here for fetching employees from our database
+        const fetchData = async () => {
+            const response = await axios.get('http://localhost:3000/api/employees');
+            setEmployees(response.data);
+        };
+
+        fetchData();
     }, []);
 
     const handleEmployeeClick = (employee) => {
@@ -59,8 +65,8 @@ const Employee = () => {
         <div className="container mx-auto p-4">
             <h1 className="text-4xl font-bold mb-8 text-center">Our Employees</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {employees.map((employee) => (
-                    <div key={employee.id} onClick={() => handleEmployeeClick(employee)} className="bg-gray-200 p-3 rounded cursor-pointer">
+                {employees.map((employee, index) => (
+                    <div key={index} onClick={() => handleEmployeeClick(employee)} className="bg-gray-200 p-3 rounded cursor-pointer">
                         <h2 className="text-lg font-bold">{employee.employee_ssn}</h2>
                         <p className="text-gray">{employee.hotel_id}</p>
                         <p className="text-gray">{employee.first_name} {employee.last_name}</p>

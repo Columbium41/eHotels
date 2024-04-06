@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const Customer = () => {
     const [customers, setCustomers] = useState([]);
@@ -8,7 +9,12 @@ const Customer = () => {
     const [newCustomer, setNewCustomer] = useState({ customer_ssn:"", first_name:"", middle_name:"", last_name:"", address:""});
 
     useEffect(() => {
-        //api goes here for fetching customers from our database
+        const fetchData = async () => {
+            const response = await axios.get('http://localhost:3000/api/customers');
+            setCustomers(response.data);
+        };
+
+        fetchData();
     }, []);
 
     const handleCustomerClick = (customer) => {
@@ -59,8 +65,8 @@ const Customer = () => {
         <div className="container mx-auto p-4">
             <h1 className="text-4xl font-bold mb-8 text-center">Our Customers</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {customers.map((customer) => (
-                    <div key={customer.id} onClick={() => handleCustomerClick(customer)} className="bg-gray-200 p-3 rounded cursor-pointer">
+                {customers.map((customer, index) => (
+                    <div key={index} onClick={() => handleCustomerClick(customer)} className="bg-gray-200 p-3 rounded cursor-pointer">
                         <h2 className="text-lg font-bold">{customer.customer_ssn}</h2>
                         <p className="text-gray">{customer.first_name} {customer.last_name}</p>
                     </div>

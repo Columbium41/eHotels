@@ -37,11 +37,11 @@ app.use('/api/archives', archivesRouter);
 const rentingRouter = require('./routes/renting');
 app.use('/api/renting', rentingRouter)
 
-// const employeeRouter = require('./routes/employee');
-// app.use('/api/employee', employeeRouter)
+const customersRouter = require('./routes/customers');
+app.use('/api/customers', customersRouter);
 
-// const customerRouter = require('./routes/customer');
-// app.use('/api/customer', customerRouter)
+const employeesRouter = require('./routes/employees');
+app.use('/api/employees', employeesRouter);
 
 // Start the server
 app.listen(PORT, () => {
