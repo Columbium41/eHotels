@@ -35,7 +35,7 @@ function RentingForm() {
             let customerSSN = document.getElementById("customer-ssn").value;
             let employeeSSN = document.getElementById("employee-ssn").value;
 
-            await axios.put('http://localhost:3000/api/renting', {
+            await axios.put('http://localhost:3000/api/archives', {
                 
                     start_date: startDate,
                     end_date: endDate,
