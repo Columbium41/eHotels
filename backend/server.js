@@ -37,6 +37,12 @@ app.use('/api/archives', archivesRouter);
 const rentingRouter = require('./routes/renting');
 app.use('/api/renting', rentingRouter)
 
+// const employeeRouter = require('./routes/employee');
+// app.use('/api/employee', employeeRouter)
+
+// const customerRouter = require('./routes/customer');
+// app.use('/api/customer', customerRouter)
+
 // Start the server
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}\n`);

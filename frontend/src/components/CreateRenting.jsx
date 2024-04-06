@@ -26,7 +26,7 @@ function Book({ user }) {
   return (
     <>
       {formSubmitted 
-        ? <RentingForm formData={formData} roomData={roomData} setFormSubmitted={setFormSubmitted} user={user} /> 
+        ? <RentingForm  formData={formData} setFormData={setFormData} setFormSubmitted={setFormSubmitted} setRoomData={setRoomData} />
         : <RentingForm formData={formData} setFormData={setFormData} setFormSubmitted={setFormSubmitted} setRoomData={setRoomData} />
       }
     </>

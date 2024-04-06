@@ -12,8 +12,7 @@ function RentingForm({ formData, setFormData, setFormSubmitted, setRoomData }) {
 
 
         try {
-            const response = await axios.get('http://localhost:3000/api/rooms/search', { params: new URLSearchParams(formData) });
-            setRoomData(response.data);
+            await axios.put('http://localhost:3000/api/renting', { params: new URLSearchParams(formData) });
             setFormSubmitted(true);
         } catch (err) {
             console.error("error submitting form:", err);   
@@ -44,13 +43,13 @@ function RentingForm({ formData, setFormData, setFormSubmitted, setRoomData }) {
 
                 {/* Cusomer */}
                 <div>
-                    <label htmlFor="customer-ssn">Room ID: </label>
+                    <label htmlFor="customer-ssn">Customer SSN: </label>
                     <input type="text" id="customer-ssn" name="customer_ssn" className="w-12" onChange={handleFormChange} value={formData.room_capacity} />
                 </div>
 
                 {/* Employee */}
                 <div>
-                    <label htmlFor="employee-ssn">Room ID: </label>
+                    <label htmlFor="employee-ssn">Employee SSN: </label>
                     <input type="text" id="employee-ssn" name="employee_ssn" className="w-12" onChange={handleFormChange} value={formData.room_capacity} />
                 </div>
 
