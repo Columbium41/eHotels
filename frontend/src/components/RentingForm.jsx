@@ -38,19 +38,19 @@ function RentingForm({ formData, setFormData, setFormSubmitted, setRoomData }) {
                 {/* Room */}
                 <div>
                     <label htmlFor="room-id">Room ID: </label>
-                    <input type="number" id="room-id" name="room_id" min="0" className="w-12" onChange={handleFormChange} value={formData.room_capacity} />
+                    <input type="text" id="room-id" name="room_id" min="0" className="w-12" onChange={handleFormChange} value={formData.room_id} />
                 </div>
 
                 {/* Cusomer */}
                 <div>
                     <label htmlFor="customer-ssn">Customer SSN: </label>
-                    <input type="text" id="customer-ssn" name="customer_ssn" className="w-12" onChange={handleFormChange} value={formData.room_capacity} />
+                    <input type="text" id="customer-ssn" name="customer_ssn" className="w-12" onChange={handleFormChange} value={formData.customer_ssn} />
                 </div>
 
                 {/* Employee */}
                 <div>
                     <label htmlFor="employee-ssn">Employee SSN: </label>
-                    <input type="text" id="employee-ssn" name="employee_ssn" className="w-12" onChange={handleFormChange} value={formData.room_capacity} />
+                    <input type="text" id="employee-ssn" name="employee_ssn" className="w-12" onChange={handleFormChange} value={formData.employee_ssn} />
                 </div>
 
             </div>

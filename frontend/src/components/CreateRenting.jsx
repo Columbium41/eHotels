@@ -10,17 +10,13 @@ function formatDate(date) {
 
 function Book({ user }) {
   const [formSubmitted, setFormSubmitted] = useState(false);
-  const [roomData, setRoomData] = useState(null);
 
   const [formData, setFormData] = useState({
     start_date: formatDate(new Date()),
     end_date: formatDate(new Date()),
-    room_capacity: '1',
-    city: '',
-    hotel_chain_name: 'Any',
-    rating: '3',
-    number_of_rooms: '',
-    price: ''
+    room_id: '',
+    employee_ssn: '',
+    customer_ssn: ''
 });
 
   return (
