@@ -13,12 +13,14 @@ git clone https://github.com/Columbium41/eHotels.git
 - Node installation depends on operating system
 
 3. Install Node Packages
+- Install Frontend Packages
 ```bash
-# install frontend packages
 cd frontend
 npm i
+```
 
-# install backend packages
+- Install Backend Packages
+```bash
 cd ../backend
 npm i
 ```
