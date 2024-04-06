@@ -6,7 +6,7 @@ import CustomerArchives from "./CustomerArchives";
 import Customer from "./Customer";
 import Employee from "./Employee";
 import Hotel from "./Hotel";
-import CreateRenting from "./CreateRenting";
+import CreateRenting from "./RentingForm";
 import CheckIn from "./CheckIn";
 
 function AppRoutes({ customerUI, user, setUser }) {

@@ -1,6 +1,23 @@
 import axios from "axios";
+import { useState } from "react";
 
-function RentingForm({ formData, setFormData, setFormSubmitted, setRoomData }) {
+
+function RentingForm() {
+
+    function formatDate(date) {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+      }
+
+    const [formData, setFormData] = useState({
+        start_date: formatDate(new Date()),
+        end_date: formatDate(new Date()),
+        room_id: '',
+        employee_ssn: '',
+        customer_ssn: ''
+    });
 
     const handleFormChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -12,8 +29,20 @@ function RentingForm({ formData, setFormData, setFormSubmitted, setRoomData }) {
 
 
         try {
-            await axios.put('http://localhost:3000/api/renting', { params: new URLSearchParams(formData) });
-            setFormSubmitted(true);
+            let startDate = formatDate(new Date());
+            let endDate = document.getElementById("end-date").value;
+            let roomID = document.getElementById("room-id").value;
+            let customerSSN = document.getElementById("customer-ssn").value;
+            let employeeSSN = document.getElementById("employee-ssn").value;
+
+            await axios.put('http://localhost:3000/api/archives', {
+                
+                    start_date: startDate,
+                    end_date: endDate,
+                    room_id: roomID,
+                    customer_ssn: customerSSN,
+                    employee_ssn: employeeSSN
+                });
         } catch (err) {
             console.error("error submitting form:", err);   
         }
@@ -24,33 +53,41 @@ function RentingForm({ formData, setFormData, setFormSubmitted, setRoomData }) {
             <div className="space-y-12">
                 {/* Dates */}
                 <div>
-                    <div>
+                    {/* <div>
                         <label htmlFor="start-date">Start Date: </label>
                         <input type="date" id="start-date" name="start_date" onChange={handleFormChange} value={formData.start_date} />
-                    </div>
+                    </div> */}
 
                     <div>
                         <label htmlFor="end-date">End Date: </label>
-                        <input type="date" id="end-date" name="end_date" onChange={handleFormChange} value={formData.end_date} />
+                        <input type="date" id="end-date" name="end_date" 
+                        // onChange={handleFormChange} value={formData.end_date} 
+                        />
                     </div>
                 </div>
                 
                 {/* Room */}
                 <div>
                     <label htmlFor="room-id">Room ID: </label>
-                    <input type="number" id="room-id" name="room_id" min="0" className="w-12" onChange={handleFormChange} value={formData.room_capacity} />
+                    <input type="text" id="room-id" name="room_id" min="0" className="w-12"
+                    //  onChange={handleFormChange} value={formData.room_id} 
+                    />
                 </div>
 
                 {/* Cusomer */}
                 <div>
                     <label htmlFor="customer-ssn">Customer SSN: </label>
-                    <input type="text" id="customer-ssn" name="customer_ssn" className="w-12" onChange={handleFormChange} value={formData.room_capacity} />
+                    <input type="text" id="customer-ssn" name="customer_ssn" className="w-12" 
+                    // onChange={handleFormChange} value={formData.customer_ssn} 
+                    />
                 </div>
 
                 {/* Employee */}
                 <div>
                     <label htmlFor="employee-ssn">Employee SSN: </label>
-                    <input type="text" id="employee-ssn" name="employee_ssn" className="w-12" onChange={handleFormChange} value={formData.room_capacity} />
+                    <input type="text" id="employee-ssn" name="employee_ssn" className="w-12"
+                    //  onChange={handleFormChange} value={formData.employee_ssn} 
+                     />
                 </div>
 
             </div>
